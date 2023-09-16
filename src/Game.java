@@ -1,69 +1,68 @@
+import java.util.Arrays;
+
 public class Game {
     public void gameStart() {
         System.out.println("игра началась");
 
-        int miss = 0;
-        Stoyka stoyka = new Stoyka();
-        stoyka.stoyka(miss);
-        Slovo slovo = new Slovo();
-        String nextSicretWorld = slovo.randomWorld();
-        char[] chars = new char[nextSicretWorld.length()];
-        for (int i = 1; i < (nextSicretWorld.length() - 1); i++) {
-            chars[i] = nextSicretWorld.charAt(i);
+        int errorNumber = 0;
+        GallowsStand stand = new GallowsStand();
+        stand.stand(errorNumber);
+        WordForARiddle hiddenWord = new WordForARiddle();
+        String nextSecretWorld = hiddenWord.WordForARiddle();
+        char[] chars = new char[nextSecretWorld.length()];
+        for (int i = 1; i < (nextSecretWorld.length() - 1); i++) {
+            chars[i] = nextSecretWorld.charAt(i);
         }
-        String[] bukvy;
-        bukvy = new String[6];
-        for (int i = 1; i <= 6; i++) {
-            bukvy[i - 1] = String.valueOf(chars[i]);
+        String[] spellTheWorld;
+        spellTheWorld = new String[nextSecretWorld.length()];
+        for (int i = 1; i < nextSecretWorld.length(); i++) {
+            spellTheWorld[i - 1] = String.valueOf(chars[i]);
         }
-        String[] quests = {"_ ", "_ ", "_ ", "_ ", "_ ", "_ "};
-        for (int i = 0; i < 6; i++) {
-            if (i == 5) {
-                System.out.println(" " + quests[i]);
-            } else {
-                System.out.print(" " + quests[i]);
-            }
+        String[] worldMask = new String[nextSecretWorld.length()];
+        for (int i = 0; i < nextSecretWorld.length(); i++) {
+            worldMask[i] = "* ";
         }
+        System.out.println(Arrays.toString(worldMask));
         while (true) {
 
-            byte word[] = new byte[256];
+            byte letter[] = new byte[256];
             int counterChar = 0;
             try {
-                counterChar = System.in.read(word);
+                counterChar = System.in.read(letter);
             } catch (Exception ex) {
                 System.out.println(ex.toString());
                 break;
             }
-            String strWord = new String(word, 0, counterChar).trim();
+            String strWord = new String(letter, 0, counterChar).trim();
             if ("выход".equalsIgnoreCase(strWord)) {
                 break;
             } else {
-                if (strWord.equals(bukvy[0])) {
-                    quests[0] = bukvy[0];
-                } else if (strWord.equals(bukvy[1])) {
-                    quests[1] = bukvy[1];
-                } else if (strWord.equals(bukvy[2])) {
-                    quests[2] = bukvy[2];
-                } else if (strWord.equals(bukvy[3])) {
-                    quests[3] = bukvy[3];
-                } else if (strWord.equals(bukvy[4])) {
-                    quests[4] = bukvy[4];
-                } else if (strWord.equals(bukvy[5])) {
-                    quests[5] = bukvy[5];
+                if (strWord.equals(spellTheWorld[0])) {
+                    worldMask[0] = spellTheWorld[0];
+                } else if (strWord.equals(spellTheWorld[1])) {
+                    worldMask[1] = spellTheWorld[1];
+                } else if (strWord.equals(spellTheWorld[2])) {
+                    worldMask[2] = spellTheWorld[2];
+                } else if (strWord.equals(spellTheWorld[3])) {
+                    worldMask[3] = spellTheWorld[3];
+                } else if (strWord.equals(spellTheWorld[4])) {
+                    worldMask[4] = spellTheWorld[4];
+                } else if (strWord.equals(spellTheWorld[5])) {
+                    worldMask[5] = spellTheWorld[5];
                 }  else {
 
-                    miss = miss + 1;
-                    System.out.println("Ошибка " + miss);
-                    stoyka.stoyka(miss);
+                    errorNumber = errorNumber + 1;
+                    System.out.println("Ошибка " + errorNumber);
+                    stand.stand(errorNumber);
                 }
 
                 System.out.print("\033[H\033[J");
-                stoyka.stoyka(miss);
+                stand.stand(errorNumber);
                 for (int j = 0; j < 6; j++) {
                     if (j == 5) {
-                        System.out.println(" " + quests[j]);
+                        System.out.println(" " + worldMask[j]);
                     } else {
-                        System.out.print(" " + quests[j]);
+                        System.out.print(" " + worldMask[j]);
                     }
                 }
 

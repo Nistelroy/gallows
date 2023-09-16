@@ -1,8 +1,8 @@
-public class Viselica {
+public class Gallows {
     public static void main(String[] args) {
-       
 
-        System.out.println("Скажи старт или выход");
+
+        System.out.println("Для начала игры введи:  1   Для выхода:  2  ");
         while (true) {
 
             byte word[] = new byte[256];
@@ -14,13 +14,13 @@ public class Viselica {
                 break;
             }
             String strWord = new String(word, 0, counterChar).trim();
-            if ("выход".equalsIgnoreCase(strWord)) {
+            if ("2".equalsIgnoreCase(strWord)) {
                 break;
-            } else if ("старт".equalsIgnoreCase(strWord)){
+            } else if ("1".equalsIgnoreCase(strWord)){
                 Game go = new Game();
                 go.gameStart();
             } else {
-                System.out.println("Ты набрал '" + strWord + "' а надо набрать старт или выход");
+                System.out.println("Ты набрал '" + strWord + "' а надо набрать   1   или   2   ");
             }
         }
     }
