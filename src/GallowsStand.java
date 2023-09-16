@@ -49,7 +49,7 @@ public class GallowsStand {
             System.out.println("  --0--    |");
             System.out.println("   / |     |");
             System.out.println("___________|");
-            System.out.println("Ошибок: слишком много. Ты мёртв. Продолжать бесполезно. для выхода напиши:  2   ");
+            System.out.println("Ошибок: " + errorNumber + ". Ты мёртв. Продолжать бесполезно. для выхода напиши:  2   ");
         }
     }
 }

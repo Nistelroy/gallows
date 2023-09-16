@@ -19,6 +19,7 @@ public class Gallows {
             } else if ("1".equalsIgnoreCase(strWord)){
                 Game go = new Game();
                 go.gameStart();
+                break;
             } else {
                 System.out.println("Ты набрал '" + strWord + "' а надо набрать   1   или   2   ");
             }

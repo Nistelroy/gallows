@@ -3,31 +3,31 @@ import java.nio.file.*;
 import java.util.*;
 class WordForARiddle {
     private static String Line(String route) {
-        List<String> l;
+        List<String> listOfWord;
         try {
-            l = Files.readAllLines(Paths.get(route));
+            listOfWord = Files.readAllLines(Paths.get(route));
         } catch (IOException e) {
             e.printStackTrace();
 
             return null;
         }
         Random random = new Random();
-        return l.get(random.nextInt(l.toArray().length));
+        return listOfWord.get(random.nextInt(listOfWord.toArray().length));
     }
 
     public static String WordForARiddle() {
 
-        String route = new File("src/resources/russian_nouns.txt").getAbsolutePath();
-        String li;
+        String dictionary = new File("src/resources/russian_nouns.txt").getAbsolutePath();
+        String word;
         while (true) {
-            li = Line(route);
-            if (li.length() > 3)
+            word = Line(dictionary);
+            if (word.length() > 3)
             {
                 break;
             }
         }
 
 
-        return li;
+        return word;
     }
 }
