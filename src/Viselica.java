@@ -1,12 +1,6 @@
-import com.sun.source.util.SourcePositions;
-
-import javax.swing.plaf.synth.SynthOptionPaneUI;
-import java.util.Random;
-import java.util.stream.IntStream;
-
 public class Viselica {
     public static void main(String[] args) {
-
+       
 
         System.out.println("Скажи старт или выход");
         while (true) {
@@ -23,8 +17,8 @@ public class Viselica {
             if ("выход".equalsIgnoreCase(strWord)) {
                 break;
             } else if ("старт".equalsIgnoreCase(strWord)){
-            Game go = new Game();
-            go.gameStart();
+                Game go = new Game();
+                go.gameStart();
             } else {
                 System.out.println("Ты набрал '" + strWord + "' а надо набрать старт или выход");
             }
