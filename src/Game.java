@@ -3,26 +3,20 @@ import java.util.Arrays;
 public class Game {
     public void gameStart() {
         System.out.println("игра началась");
-
         int errorNumber = 0;
         GallowsStand stand = new GallowsStand();
-        stand.stand(errorNumber);
+        stand.stand(errorNumber);                        // рисую стойку
         WordForARiddle hiddenWord = new WordForARiddle();
-        String nextSecretWorld = hiddenWord.WordForARiddle();
-        char[] chars = new char[nextSecretWorld.length()];
-        for (int i = 1; i < (nextSecretWorld.length() - 1); i++) {
-            chars[i] = nextSecretWorld.charAt(i);
-        }
-        String[] spellTheWorld;
-        spellTheWorld = new String[nextSecretWorld.length()];
-        for (int i = 1; i < nextSecretWorld.length(); i++) {
-            spellTheWorld[i - 1] = String.valueOf(chars[i]);
-        }
+        String nextSecretWorld = hiddenWord.WordForARiddle();  // загадываю слово
+        char[] spellTheWorld = new char[nextSecretWorld.length()];
+        for (int i = 0; i < nextSecretWorld.length(); i++) {
+            spellTheWorld[i] = nextSecretWorld.charAt(i);}               // создаю массив с буквами
+                                                            System.out.println(Arrays.toString(spellTheWorld) + " chars ");
         String[] worldMask = new String[nextSecretWorld.length()];
         for (int i = 0; i < nextSecretWorld.length(); i++) {
             worldMask[i] = "* ";
         }
-        System.out.println(Arrays.toString(worldMask));
+        System.out.println(Arrays.toString(worldMask));  // рисую маску слова
         while (true) {
 
             byte letter[] = new byte[256];
@@ -36,7 +30,7 @@ public class Game {
             String strWord = new String(letter, 0, counterChar).trim();
             if ("выход".equalsIgnoreCase(strWord)) {
                 break;
-            } else {
+            } else /*{
                 if (strWord.equals(spellTheWorld[0])) {
                     worldMask[0] = spellTheWorld[0];
                 } else if (strWord.equals(spellTheWorld[1])) {
@@ -49,7 +43,7 @@ public class Game {
                     worldMask[4] = spellTheWorld[4];
                 } else if (strWord.equals(spellTheWorld[5])) {
                     worldMask[5] = spellTheWorld[5];
-                }  else {
+                }  else */ {
 
                     errorNumber = errorNumber + 1;
                     System.out.println("Ошибка " + errorNumber);
@@ -69,5 +63,5 @@ public class Game {
             }
         }
     }
-}
+
 
